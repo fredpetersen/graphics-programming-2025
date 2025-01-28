@@ -60,7 +60,7 @@ ITU Graphics Programming
 <p><ol>
 	<li>Locate and include the header for the new classes: VertexBufferObject and VertexArrayObject. Additionally, you need to include another header named VertexAttribute.</li>
 	<li>Replace the integer handles VAO and VBO with local variables of the corresponding new classes. I recommend using lowercase variable names this time.</li>
-	<li>Find the constructor and destructor for the new classes. Fill them in by moving the corresponding <a href="https://docs.gl/gl4/glGenBuffers">glGenXXX</a> and <a href="https://docs.gl/gl4/glDeleteBuffers">glDeleteXXX</a> functions. For VertexBufferObject you also need to look in the base class.</li>
+	<li>Find the constructor and destructor for the new classes. Fill them in by moving the corresponding <a href="https://docs.gl/gl4/glGenBuffers">glGenXXX</a> and <a href="https://docs.gl/gl4/glDeleteBuffers">glDeleteXXX</a> functions. For VertexBufferObject, most of your work will happen in the base class.</li>
 	<li>Binding is required to make your object active before performing operations on it. Replace all the <a href="https://docs.gl/gl4/glBindBuffer">glBindXXX</a> with the methods of the new classes. When binding a 0 handle we will use our new Unbind method instead, to reflect the real intention. Don't forget to implement those methods in their .cpp files as well.</li>
 	<li>Fill in the VBO with the vertices data. In OpenGL this is done using <a href="https://docs.gl/gl4/glBufferData">glBufferData</a>. We named this function AllocateData in our library, to remind us that it is allocating memory when we use it.
 	<br/>Implement both versions of the function (with and without initial data) in the library, and use the one that receives a <a href="https://en.cppreference.com/w/cpp/container/span">std::span</a>.
@@ -82,7 +82,6 @@ ITU Graphics Programming
 <p>The triangle is nice, but now we would like to have a quad (rectangle). To build it, we need at least 2 triangles.</p>
 <p>First, modify the last vertex (top) in the vertices array to create a right triangle (90 degrees in one corner). One way to do it is to change the X coordinate to 0.5</p>
 <p>Add another 3 vertices to the list. Two of them will be repeated from the first triangle (the side shared by both triangles), and the other one will be opposite to the right angle. If you run the program now, you will still see only 1 triangle, that is normal.</p>
-<p>Find the Allocate for the VBO and update the count, from 18 to 12.</li>
 <p>Find the <a href="https://docs.gl/gl4/glDrawArrays">glDrawArrays</a> call and change the number of vertices drawn to 6 instead of 3. You should be able to see a quad now!</p>
 <p>Things you can try if it is not working:</p>
 <p><ul>
