@@ -20,16 +20,11 @@ ENDMACRO()
 
 
 if(APPLE)
-    find_library(IOKIT_LIBRARY IOKit)
-    find_library(COCOA_LIBRARY Cocoa)
-    find_library(OPENGL_LIBRARY OpenGL)
-    find_library(COREVIDEO_LIBRARY CoreVideo)
-
-    set(APPLE_LIBRARIES 
-		${OPENGL_LIBRARY}
-		${COCOA_LIBRARY}
-		${IOKIT_LIBRARY}
-		${COREVIDEO_LIBRARY}
+    set(APPLE_LIBRARIES
+      "-framework OpenGL"
+      "-framework Cocoa"
+      "-framework IOKit"
+      "-framework CoreVideo"
 	)
 endif()
 
