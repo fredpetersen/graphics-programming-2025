@@ -10,3 +10,5 @@ exercises/exercise06/exercise06.sln
 exercises/exercise06/.vsconfig
 .cache
 .idea
+
+cmake-build-debug
